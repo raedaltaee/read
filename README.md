@@ -20,7 +20,7 @@
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
@@ -239,7 +239,18 @@
             <header class="bg-white shadow-sm p-4 flex justify-between items-center">
                 <div id="header-title" class="text-xl font-bold text-slate-700">لوحة التحكم</div>
                 <div class="flex items-center">
-                    <span id="systemManagerName" class="text-sm font-semibold cursor-pointer hover:text-sky-700 transition-colors">مرحباً, مدير النظام</span>
+                    <span id="systemManagerName" class="text-sm font-semibold cursor-pointer hover:text-sky-700 transition-colors">مرحباً, مدير النظام</span>systemManagerNameSpan.addEventListener('click', () => {
+    newManagerNameInput.value = managerName;
+    managerNameModal.classList.remove('hidden');
+});saveManagerNameBtn.addEventListener('click', () => {
+    const newName = newManagerNameInput.value.trim();
+    if (newName) {
+        managerName = newName;
+        localStorage.setItem('systemManagerName', newName);
+        updateManagerNameDisplay();
+        managerNameModal.classList.add('hidden');
+    }
+});
                     <button id="logoutBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg ms-4 hover:bg-red-600 transition-colors">خروج</button>
                 </div>
             </header>
